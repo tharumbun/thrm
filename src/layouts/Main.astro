@@ -1,54 +1,29 @@
 ---
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import { SITE } from "@/config";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
 
-interface StringTitleProp {
+export interface Props {
   pageTitle: string;
   pageDesc?: string;
 }
 
-interface ArrayTitleProp {
-  pageTitle: [string, string];
-  titleTransition: string;
-  pageDesc?: string;
-}
-
-export type Props = StringTitleProp | ArrayTitleProp;
-
-const { props } = Astro;
-
-const backUrl = SITE.showBackButton ? Astro.url.pathname : "/";
+const { pageTitle, pageDesc } = Astro.props;
 ---
 
-<Breadcrumb />
-<main
-  data-backUrl={backUrl}
-  id="main-content"
-  class="mx-auto w-full max-w-3xl px-4 pb-4"
->
-  {
-    "titleTransition" in props ? (
-      <h1 class="text-2xl font-semibold sm:text-3xl">
-        {props.pageTitle[0]}
-        <span transition:name={props.titleTransition}>
-          {props.pageTitle[1]}
-        </span>
-      </h1>
-    ) : (
-      <h1 class="text-2xl font-semibold sm:text-3xl">{props.pageTitle}</h1>
-    )
-  }
-  <p class="mt-2 mb-6 italic">{props.pageDesc}</p>
+<Breadcrumbs />
+<main id="main-content">
+  <h1>{pageTitle}</h1>
+  <p>{pageDesc}</p>
   <slot />
 </main>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const mainContent: HTMLElement | null =
-      document.querySelector("#main-content");
-    const backUrl = mainContent?.dataset?.backurl;
-    if (backUrl) {
-      sessionStorage.setItem("backUrl", backUrl);
-    }
-  });
-</script>
+<style>
+  #main-content {
+    @apply mx-auto w-full max-w-3xl px-4 pb-12;
+  }
+  #main-content h1 {
+    @apply text-2xl font-semibold sm:text-3xl;
+  }
+  #main-content p {
+    @apply mt-2 mb-6 italic;
+  }
+</style>
