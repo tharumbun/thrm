@@ -2,9 +2,6 @@
 layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
-![Alt text](../assets/tharum_bun.jpg "Tharum Bun")
-Photographed by 
-[Zakaria Zainal](https://www.zakariazainalphoto.com/)
 
 Tharum is the co-founder of [Kiripost](https://kiripost.com/), a Phnom Penh-based media startup that focuses on business and technology.
 
