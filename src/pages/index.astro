@@ -75,7 +75,7 @@ Tharum Bun is a Cambodian blogger, tech writer, and media professional with deep
             <ul>
               {featuredPosts.map(({ data, id }) => (
                 <Card
-                  href={`/posts/${id}/`}
+                  href={`/blog/${id}/`}
                   frontmatter={data}
                   secHeading={false}
                 />
@@ -96,7 +96,7 @@ Tharum Bun is a Cambodian blogger, tech writer, and media professional with deep
               ({ data, id }, index) =>
                 index < SITE.postPerIndex && (
                   <Card
-                    href={`/posts/${id}/`}
+                    href={`/blog/${id}/`}
                     frontmatter={data}
                     secHeading={false}
                   />
